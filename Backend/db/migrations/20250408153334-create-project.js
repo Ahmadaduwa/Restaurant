@@ -2,14 +2,14 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('projects', {
+    await queryInterface.createTable('project', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      titile: {
+      title: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -30,7 +30,7 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false,
       },
-      descrption: {
+      description: {
         type: Sequelize.TEXT,
         allowNull: false,
       },
@@ -46,8 +46,9 @@ module.exports = {
       },
       createdBy: {
         type: Sequelize.INTEGER,
+        allowNull: true,
         references: {
-          model: 'users',
+          model: 'user',
           key: 'id'
         },
       },
@@ -66,6 +67,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('projects');
+    await queryInterface.dropTable('project');
   }
 };

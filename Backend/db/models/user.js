@@ -7,7 +7,12 @@ module.exports = (sequelize, DataTypes) => {
   class user extends Model {
 
     static associate(models) {
-
+      user.hasMany(models.project, {
+        foreignKey: 'createdBy',
+        as: 'project',
+        onDelete: 'CASCADE',
+      });
+      
     }
   }
   user.init({
@@ -103,13 +108,12 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.DATE
     },
-    deletedAt: {
-      type: DataTypes.DATE,
-      allowNull: true,  
-    }
   }, {
     sequelize,
     modelName: 'user',
+    paranoid: true,
+    timestamps: true,
+    freezeTableName: true,
   });
   return user;
 };

@@ -8,7 +8,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      project.belongsTo(models.user, {
+        foreignKey: 'createdBy',
+        as: 'user',
+      });
     }
   }
   project.init({
@@ -18,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-    titile: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
@@ -38,28 +41,80 @@ module.exports = (sequelize, DataTypes) => {
     productImage: {
       type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Product image is required"
+        },
+      },
     },
     price: {
       type: DataTypes.DECIMAL,
       allowNull: false,
+      validate: {
+        isDecimal: {
+          msg: "Price must be a decimal number"
+        },
+        notNull: {
+          msg: "Price is required"
+        },
+      },
     },
     shortDescription: {
       type: DataTypes.TEXT,
       allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: "Short description cannot be empty"
+        },
+        notNull: {
+          msg: "Short description is required"
+        },
+      },
     },
-    descrption: {
+    description: {
       type: DataTypes.TEXT,
       allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: "Description cannot be empty"
+        },
+        notNull: {
+          msg: "Description is required"
+        },
+      },
     },
     productUrl: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        isUrl: {
+          msg: "Product URL must be a valid URL"
+        },
+        notNull: {
+          msg: "Product URL is required"
+        },
+        notEmpty: {
+          msg: "Product URL cannot be empty"
+        },
+      },
     },
     category: {
       type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Category is required"
+        },
+      },  
     },
     tags: {
       type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Tags are required"
+        },
+      }, 
     },
     createdBy: {
       type: DataTypes.INTEGER,
@@ -76,13 +131,12 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.DATE
     },
-    deletedAt: {
-      type: DataTypes.DATE,
-      allowNull: true,  
-    }
   }, {
     sequelize,
     modelName: 'project',
+    paranoid: true,
+    timestamps: true,
+    freezeTableName: true,
   });
   return project;
 };

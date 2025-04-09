@@ -5,6 +5,14 @@ const bcrypt = require("bcrypt");
 const dotenv = require("dotenv");
 dotenv.config();
 
+// add passport ถ้าจะเชื่อม Google Facebook
+// add refresh token ถ้าจะให้มีการ login อัตโนมัติ
+// add logout ถ้าจะให้มีการ logout
+// add forgot password ถ้าจะให้มีการลืมรหัสผ่าน
+// add change password ถ้าจะให้มีการเปลี่ยนรหัสผ่าน
+// add update profile ถ้าจะให้มีการแก้ไขข้อมูลส่วนตัว
+// add delete account ถ้าจะให้มีการลบบัญชีผู้ใช้
+
 const generateToken = (payload) => {
     try {
         return jwt.sign(payload, process.env.JWT_SECRET, {
