@@ -35,7 +35,8 @@ router.post('/create', authentication, restricTo('1'), catchAsync( async (req, r
         next(error);
     }
 }));
-
+// userid = '+or+1=1--
+// select * from project where 'createdBy = '+or+1=1
 router.get('/get/all', authentication, restricTo('1', '2'), catchAsync(async (req, res, next) => {
     try {
         const userId = req.user.id;

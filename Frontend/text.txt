@@ -1,0 +1,15 @@
+assets/	📦 สื่อที่ไม่ใช่โค้ด	เช่น รูปภาพ ไอคอน โลโก้, ไฟล์ SVG, ฟอนต์
+components/	🧩 ชิ้นส่วน UI ที่ใช้ซ้ำบ่อย	เช่น Button, Navbar, Modal, Table
+components/common/	🔁 Reusable Components	เช่น ปุ่ม Input ที่ใช้ในหลายหน้า
+components/form/	📝 ฟอร์มที่ใช้บ่อย	เช่น TextField, Checkbox, Select
+features/	🗂 จัดการตามหมวดหมู่ฟีเจอร์	เช่น auth, users, products แยกกันเป็นโฟลเดอร์
+features/auth/	🔐 ฟีเจอร์เกี่ยวกับการยืนยันตัวตน	มี login, register, จัดการ token ฯลฯ
+hooks/	🪝 custom hooks	เช่น useDebounce, useAuth, useScrollToTop
+layouts/	🧱 โครงร่างหน้าจอ	เช่น หน้า Admin จะมี Sidebar + Content (AdminLayout.jsx)
+pages/	📄 หน้าเพจที่ใช้ใน Router	เช่น Home, About, Login, Profile
+router/	🌐 Routes ทั้งหมด	ใช้ react-router-dom กำหนด route ต่างๆ
+services/	🔌 API Service Layer	สำหรับเรียก REST API เช่น axios ไปยัง backend
+styles/	🎨 CSS / SCSS ที่ใช้ทั่วโปรเจกต์	เช่น global.css, theme.scss
+utils/	🛠 ฟังก์ชันทั่วไป (ไม่ผูกกับ React)	เช่น คำนวณแต้ม, ตรวจ format email
+App.jsx	🧠 จุดรวม Route / Layout หลัก	ตรงนี้อาจครอบด้วย Router, AuthProvider ฯลฯ
+main.jsx	🚪 Entry point หลักของ React	mount ไปที่ DOM #root

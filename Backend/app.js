@@ -12,7 +12,7 @@ const rateLimit = require('express-rate-limit');
 dotenv.config();
 
 //Routes
-const apiRoutes = require(__dirname + "/routes/auth");
+const authRoutes = require(__dirname + "/routes/auth");
 const projectRoutes = require(__dirname + "/routes/project");
 const userRoutes = require(__dirname + "/routes/user");
 
@@ -31,10 +31,11 @@ app.use(helmet());
 app.use(morgan('combined'));
 app.use(rateLimit({
   windowMs: 15 * 60 * 1000, // 15 นาที
-  max: 1000, 
+  max: 100, 
   message: 'Too many requests, please try again later.', 
   headers: true, 
 }));  
+
 /*
 
 // ตั้งค่า CORS ให้อนุญาตการเข้าถึงจากโดเมนที่กำหนด
@@ -78,7 +79,7 @@ app.use(helmet({
 
 
 // Routes
-app.use("/api/auth", apiRoutes);
+app.use("/api/auth", authRoutes);
 app.use("/api/project", projectRoutes);
 app.use("/api/user", userRoutes);
 
